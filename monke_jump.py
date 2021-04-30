@@ -2,6 +2,7 @@ import pygame as pg
 from pygame.locals import *
 from monke import Monke
 from background_graphics import Background_Graphics
+from obstacle import Obstacle
 from load_resources import load_sound
 
 
@@ -22,9 +23,10 @@ def main():
 
     #load resources
     monke = Monke()
+    obstacle = Obstacle()
     bg_graphics = Background_Graphics()
 
-    allsprites = pg.sprite.RenderPlain((bg_graphics, monke))
+    allsprites = pg.sprite.RenderPlain((bg_graphics, obstacle, monke))
     clock = pg.time.Clock()
 
     keepRunning = True
