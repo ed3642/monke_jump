@@ -4,8 +4,6 @@ from load_resources import load_image
 
 
 class Monke(pg.sprite.Sprite):
-    """Monke go jump"""
-
     def __init__(self):
         pg.sprite.Sprite.__init__(self)
         self.image, self.rect = load_image('./images/monke_ride.png', -1)
