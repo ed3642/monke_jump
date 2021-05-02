@@ -29,9 +29,9 @@ def main():
     allsprites = pg.sprite.RenderPlain((bg_graphics, obstacle, monke))
     clock = pg.time.Clock()
 
-    keepRunning = True
+    run = True
 
-    while keepRunning:
+    while run:
         clock.tick(60)
 
         for event in pg.event.get():
@@ -41,6 +41,8 @@ def main():
                 return
             elif event.type == KEYDOWN and event.key == K_SPACE:
                 monke.jump_event()
+        
+        obstacle.move_event()
 
         allsprites.update()
         window.blit(background, (0, 0))
