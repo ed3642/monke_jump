@@ -7,7 +7,7 @@ import random
 class Obstacle(pg.sprite.Sprite):
     def __init__(self):
         pg.sprite.Sprite.__init__(self)
-        self.image, self.rect = load_colork_image('./images/obstacle_box.png', -1)
+        self.image, self.rect = load_colork_image('./images/champs/gwen.png', -1)
         window = pg.display.get_surface()
         self.area = window.get_rect()
         self.rect.topleft = window.get_rect().right, 210
@@ -17,6 +17,9 @@ class Obstacle(pg.sprite.Sprite):
         self.move_delta = 10
         self.rand_gap = random.randint(100, 600)
         self.collided = False
+
+    def chose_rand_file():
+        randInt = random.randint(1, 4)
 
     def update(self):
         if self.collided:

@@ -1,0 +1,6 @@
+TODO:
+-jump counter
+-rand image
+
+maybe:
+-increasing diff

@@ -26,18 +26,17 @@ def main():
 
     if not pg.font:
         print("Warning, fonts disabled")
-
-    if pg.font:
-        font = pg.font.Font(None, 20)
-        text = font.render("Press \"Space\" to avoid brain ded champs!", 1, (10, 10, 10))
-        text_pos = text.get_rect(centerx=background.get_width()/2)
+    else:
+        font = pg.font.Font(None, 30)
+        text = font.render("Press \"Space\" to avoid brain dmg champs!", 1, (255, 255, 255))
+        text_pos = text.get_rect(topleft=(100,200))
         background.blit(text, text_pos)
 
     monke = Monke()
     obstacle = Obstacle()
     bg_graphics = Background_Graphics()
 
-    allsprites = pg.sprite.RenderPlain((obstacle, monke))
+    allsprites = pg.sprite.RenderPlain((bg_graphics, obstacle, monke))
     clock = pg.time.Clock()
 
     run = True
@@ -64,6 +63,7 @@ def main():
         window.blit(background, (0, 0))
         allsprites.draw(window)
         pg.display.update()
+        bg_graphics.image.blit(text, text_pos)
 
     pg.quit()
 
