@@ -12,7 +12,7 @@ class Monke(pg.sprite.Sprite):
         window = pg.display.get_surface()
         self.area = window.get_rect()
         self.rect.topleft = 10, 150
-        self.move = -4
+        self.move = -5
         self.jump_counter = 0
         self.jump_delta = 10
         self.original_pos = self.rect.topleft

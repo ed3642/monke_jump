@@ -12,13 +12,17 @@ class Obstacle(pg.sprite.Sprite):
         self.area = window.get_rect()
         self.rect.topleft = window.get_rect().right, 210
         self.original_pos = self.rect.left
-        self.move = -7
+        self.move = -8
         self.move_counter = 0
         self.move_delta = 10
         self.rand_gap = random.randint(100, 600)
+        self.collided = False
 
     def update(self):
-        if self.move_counter:
+        if self.collided:
+            self.rand_gap = random.randint(100, 600)
+            self.reset_object()
+        elif self.move_counter:
             self.move_left()
 
     def move_left(self):
@@ -31,10 +35,10 @@ class Obstacle(pg.sprite.Sprite):
         self.rect = self.rect.move((self.move, 0))
 
     def is_offscreen(self):
-        return self.rect.left < (0 - self.rect.width - self.rand_gap)
+        return self.rect.left < (0 - self.rect.width)
             
     def reset_object(self):
-        self.rect.left = self.original_pos
+        self.rect.left = self.original_pos + self.rand_gap
         self.move_counter = 0
 
     def move_event(self):
