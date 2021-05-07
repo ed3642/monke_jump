@@ -16,6 +16,7 @@ class Monke(pg.sprite.Sprite):
         self.jump_counter = 0
         self.jump_delta = 10
         self.original_pos = self.rect.topleft
+        self.lives = 5
 
     def update(self):
         if self.jump_counter:

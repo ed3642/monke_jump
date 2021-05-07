@@ -4,6 +4,7 @@ from monke import Monke
 from background_graphics import Background_Graphics
 from obstacle import Obstacle
 from load_resources import load_sound
+import time
 
 
 def main():
@@ -33,7 +34,7 @@ def main():
     run = True
 
     while run:
-        clock.tick(60)
+        clock.tick(60 + Obstacle.jump_count * 10)
 
         for event in pg.event.get():
             if event.type == QUIT:
@@ -49,17 +50,30 @@ def main():
 
         if obstacle.collided:
             hurt_sound.play()
+            monke.lives -= 1
+            if monke.lives <= 0:
+                text = font.render(f"YOUR BOOSTED! Your score: {Obstacle.jump_count} qq", True, (255,255,255))
+                run = False
         else:
             text = font.render(f"Press \"Space\" to avoid brain dmg champs!"
-            + f"                                Monke's dodges: {Obstacle.jump_count}!", True, (255,255,255))
+            + f"                 Monke's dodges: {Obstacle.jump_count}!"
+            + f"                 Lifes: {monke.lives}",
+            True, (255,255,255))
 
-        allsprites.update()
-        allsprites.draw(window)
-        bg_graphics.image.blit(pg.Surface((window.get_width(), 20)), (0,200))
-        bg_graphics.image.blit(text, text_pos)
-        pg.display.update()
+        update_tick(allsprites, bg_graphics, window, text, text_pos)
 
+
+    update_tick(allsprites, bg_graphics, window, text, text_pos)
+
+    time.sleep(4)
     pg.quit()
+
+def update_tick(allsprites, bg_graphics, window, text, text_pos):
+    allsprites.update()
+    allsprites.draw(window)
+    bg_graphics.image.blit(pg.Surface((window.get_width(), 20)), (0,200))
+    bg_graphics.image.blit(text, text_pos)
+    pg.display.update()
 
 
 if __name__ == "__main__": main()
