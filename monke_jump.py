@@ -7,7 +7,7 @@ from load_resources import load_sound
 import time
 
 
-def main():
+def game():
     pg.init()
 
     window = pg.display.set_mode((900, 350))
@@ -76,4 +76,4 @@ def update_tick(allsprites, bg_graphics, window, text, text_pos):
     pg.display.update()
 
 
-if __name__ == "__main__": main()
+#if __name__ == "__main__": main()
