@@ -10,5 +10,4 @@ class Background_Graphics(pg.sprite.Sprite):
         window = pg.display.get_surface()
         self.area = window.get_rect()
         self.rect.topleft = 0, -175
-        self.original_pos = self.rect.topleft
 

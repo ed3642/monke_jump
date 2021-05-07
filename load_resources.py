@@ -3,7 +3,7 @@ import pygame as pg
 from pygame.locals import *
 
 
-def load_colork_image(name, colorkey=None):
+def load_color_image(name, colorkey=None):
     rel_path = os.path.join('resources', name)
     try:
         image = pg.image.load(rel_path)

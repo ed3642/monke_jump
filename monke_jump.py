@@ -13,14 +13,6 @@ def main():
     pg.display.set_caption('Monke Jump')
     pg.mouse.set_visible(True)
 
-    background = pg.Surface(window.get_size())
-    background = background.convert()
-    background.fill((0, 0, 0))
-
-    #Initial bg draw onto window
-    window.blit(background, (0, 0))
-    pg.display.update()
-
     #load resources
     hurt_sound = load_sound("./sounds/hurt.wav")
 
@@ -28,9 +20,8 @@ def main():
         print("Warning, fonts disabled")
     else:
         font = pg.font.Font(None, 30)
-        text = font.render("Press \"Space\" to avoid brain dmg champs!", 1, (255, 255, 255))
-        text_pos = text.get_rect(topleft=(100,200))
-        background.blit(text, text_pos)
+        text = font.render("", True, (255, 255, 255))
+        text_pos = text.get_rect(topleft=(20,200))
 
     monke = Monke()
     obstacle = Obstacle()
@@ -58,12 +49,15 @@ def main():
 
         if obstacle.collided:
             hurt_sound.play()
+        else:
+            text = font.render(f"Press \"Space\" to avoid brain dmg champs!"
+            + f"                                Monke's dodges: {Obstacle.jump_count}!", True, (255,255,255))
 
         allsprites.update()
-        window.blit(background, (0, 0))
         allsprites.draw(window)
-        pg.display.update()
+        bg_graphics.image.blit(pg.Surface((window.get_width(), 20)), (0,200))
         bg_graphics.image.blit(text, text_pos)
+        pg.display.update()
 
     pg.quit()
 
