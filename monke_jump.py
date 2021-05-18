@@ -38,7 +38,7 @@ def game():
     gp_theme.play()
 
     while run:
-        clock.tick(60 + Obstacle.jump_count * 2)
+        clock.tick(60 + Obstacle.jump_count * 3)
 
         for event in pg.event.get():
             if event.type == QUIT:
