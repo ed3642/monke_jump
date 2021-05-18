@@ -21,7 +21,7 @@ class Obstacle(pg.sprite.Sprite):
         self.area = window.get_rect()
         self.rect.topleft = window.get_rect().right, 210
         self.original_pos = self.rect.left
-        self.move = -8
+        self.move = -10
         self.move_counter = 0
         self.move_delta = 10
         self.rand_gap = random.randint(1, 1000)

@@ -15,7 +15,9 @@ def game():
     pg.mouse.set_visible(True)
 
     #load resources
+    gp_theme = load_sound("./sounds/gp_theme.mp3")
     hurt_sound = load_sound("./sounds/hurt.wav")
+    three_in_a_row = load_sound("./sounds/three_in_a_row.mp3")
 
     if not pg.font:
         print("Warning, fonts disabled")
@@ -32,9 +34,12 @@ def game():
     clock = pg.time.Clock()
 
     run = True
+    jump_in_row = 0
+
+    gp_theme.play()
 
     while run:
-        clock.tick(60 + Obstacle.jump_count * 10)
+        clock.tick(60 + Obstacle.jump_count * 2)
 
         for event in pg.event.get():
             if event.type == QUIT:
@@ -50,14 +55,20 @@ def game():
 
         if obstacle.collided:
             hurt_sound.play()
+            jump_in_row = 0
             monke.lives -= 1
             if monke.lives <= 0:
                 text = font.render(f"YOUR BOOSTED! Your score: {Obstacle.jump_count} qq", True, (255,255,255))
                 run = False
         else:
-            text = font.render(f"Press \"Space\" to avoid brain dmg champs!"
-            + f"                 Monke's dodges: {Obstacle.jump_count}!"
-            + f"                 Lifes: {monke.lives}",
+            jump_in_row += 1
+            if jump_in_row >= 3: 
+                three_in_a_row.play()
+                jump_in_row = 0
+            ints = (monke.lives * -1) + 10
+            text = font.render(f"Press \"Space\". Double digit ints = gg"
+            + f"               Monke's dodges: {Obstacle.jump_count}!"
+            + f"               Ints: {ints}",
             True, (255,255,255))
 
         update_tick(allsprites, bg_graphics, window, text, text_pos)
@@ -65,7 +76,7 @@ def game():
 
     update_tick(allsprites, bg_graphics, window, text, text_pos)
 
-    time.sleep(4)
+    time.sleep(2)
     pg.quit()
 
 def update_tick(allsprites, bg_graphics, window, text, text_pos):

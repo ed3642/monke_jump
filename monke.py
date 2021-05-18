@@ -8,7 +8,7 @@ class Monke(pg.sprite.Sprite):
 
     def __init__(self):
         pg.sprite.Sprite.__init__(self)
-        self.image, self.rect = load_color_image('./images/monke_ride.png', -1)
+        self.image, self.rect = load_color_image('./images/monke_ride_gp_vlad.png', -1)
         window = pg.display.get_surface()
         self.area = window.get_rect()
         self.rect.topleft = 10, 150
@@ -16,7 +16,7 @@ class Monke(pg.sprite.Sprite):
         self.jump_counter = 0
         self.jump_delta = 10
         self.original_pos = self.rect.topleft
-        self.lives = 5
+        self.lives = 10
 
     def update(self):
         if self.jump_counter:
