@@ -68,8 +68,6 @@ def game():
             + f"               Ints: {ints}",
             True, (255,255,255))
 
-        print(Obstacle.jumps_in_row)
-
         update_tick(allsprites, bg_graphics, window, text, text_pos)
 
 
