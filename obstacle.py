@@ -9,6 +9,7 @@ from os.path import isfile, join
 class Obstacle(pg.sprite.Sprite):
 
     jump_count = 0
+    jumps_in_row = 0
 
     img_folder_path = "./resources/images/champs"
     img_folder_size = len(listdir(img_folder_path))
@@ -33,6 +34,7 @@ class Obstacle(pg.sprite.Sprite):
 
     def update(self):
         if self.collided:
+            Obstacle.jumps_in_row = 0
             self.rand_gap = random.randint(1, 1000)
             self.reset_object()
         elif self.move_counter:
@@ -43,6 +45,7 @@ class Obstacle(pg.sprite.Sprite):
 
         if self.is_offscreen():
             Obstacle.jump_count += 1
+            Obstacle.jumps_in_row += 1
             self.reset_object()
             self.rand_gap = random.randint(1, 1000)
 

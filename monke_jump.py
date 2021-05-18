@@ -34,7 +34,6 @@ def game():
     clock = pg.time.Clock()
 
     run = True
-    jump_in_row = 0
 
     gp_theme.play()
 
@@ -55,21 +54,21 @@ def game():
 
         if obstacle.collided:
             hurt_sound.play()
-            jump_in_row = 0
             monke.lives -= 1
             if monke.lives <= 0:
                 text = font.render(f"YOUR BOOSTED! Your score: {Obstacle.jump_count} qq", True, (255,255,255))
                 run = False
         else:
-            jump_in_row += 1
-            if jump_in_row >= 3: 
+            if Obstacle.jumps_in_row >= 3: 
+                Obstacle.jumps_in_row = 0
                 three_in_a_row.play()
-                jump_in_row = 0
             ints = (monke.lives * -1) + 10
             text = font.render(f"Press \"Space\". Double digit ints = gg"
             + f"               Monke's dodges: {Obstacle.jump_count}!"
             + f"               Ints: {ints}",
             True, (255,255,255))
+
+        print(Obstacle.jumps_in_row)
 
         update_tick(allsprites, bg_graphics, window, text, text_pos)
 
