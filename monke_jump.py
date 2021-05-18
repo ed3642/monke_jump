@@ -74,6 +74,3 @@ def update_tick(allsprites, bg_graphics, window, text, text_pos):
     bg_graphics.image.blit(pg.Surface((window.get_width(), 20)), (0,200))
     bg_graphics.image.blit(text, text_pos)
     pg.display.update()
-
-
-#if __name__ == "__main__": main()
